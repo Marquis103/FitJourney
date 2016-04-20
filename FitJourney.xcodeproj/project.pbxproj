@@ -14,6 +14,11 @@
 		F444EE5D1CC5D02900CD724D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F444EE5C1CC5D02900CD724D /* Assets.xcassets */; };
 		F444EE601CC5D02900CD724D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F444EE5E1CC5D02900CD724D /* LaunchScreen.storyboard */; };
 		F444EE6B1CC5D02900CD724D /* FitJourneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE6A1CC5D02900CD724D /* FitJourneyTests.swift */; };
+		F444EE761CC6F5A900CD724D /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE751CC6F5A900CD724D /* CoreDataStackTests.swift */; };
+		F444EE791CC70A3600CD724D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE781CC70A3500CD724D /* CoreDataStack.swift */; };
+		F444EE7D1CC7198500CD724D /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE7B1CC7198500CD724D /* DiaryEntry.swift */; };
+		F444EE7F1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */; };
+		F444EE811CC71B8900CD724D /* DiaryEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		F444EE661CC5D02900CD724D /* FitJourneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitJourneyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F444EE6A1CC5D02900CD724D /* FitJourneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitJourneyTests.swift; sourceTree = "<group>"; };
 		F444EE6C1CC5D02900CD724D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F444EE751CC6F5A900CD724D /* CoreDataStackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
+		F444EE781CC70A3500CD724D /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F444EE7B1CC7198500CD724D /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
+		F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DiaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,7 @@
 		F444EE511CC5D02900CD724D /* FitJourney */ = {
 			isa = PBXGroup;
 			children = (
+				F444EE771CC70A1900CD724D /* Data */,
 				F444EE521CC5D02900CD724D /* AppDelegate.swift */,
 				F444EE541CC5D02900CD724D /* ViewController.swift */,
 				F444EE561CC5D02900CD724D /* Main.storyboard */,
@@ -95,8 +106,20 @@
 			children = (
 				F444EE6A1CC5D02900CD724D /* FitJourneyTests.swift */,
 				F444EE6C1CC5D02900CD724D /* Info.plist */,
+				F444EE751CC6F5A900CD724D /* CoreDataStackTests.swift */,
+				F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */,
 			);
 			path = FitJourneyTests;
+			sourceTree = "<group>";
+		};
+		F444EE771CC70A1900CD724D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */,
+				F444EE7B1CC7198500CD724D /* DiaryEntry.swift */,
+				F444EE781CC70A3500CD724D /* CoreDataStack.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,9 +223,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F444EE7F1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift in Sources */,
 				F444EE551CC5D02900CD724D /* ViewController.swift in Sources */,
 				F444EE531CC5D02900CD724D /* AppDelegate.swift in Sources */,
 				F444EE5B1CC5D02900CD724D /* FitJourney.xcdatamodeld in Sources */,
+				F444EE7D1CC7198500CD724D /* DiaryEntry.swift in Sources */,
+				F444EE791CC70A3600CD724D /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F444EE6B1CC5D02900CD724D /* FitJourneyTests.swift in Sources */,
+				F444EE761CC6F5A900CD724D /* CoreDataStackTests.swift in Sources */,
+				F444EE811CC71B8900CD724D /* DiaryEntryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
