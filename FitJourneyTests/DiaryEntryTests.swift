@@ -31,4 +31,15 @@ class DiaryEntryTests: XCTestCase {
 		
 		XCTAssertNotNil(entry)
     }
+	
+	func testDiaryEntryValidation() {
+		let entry = DiaryEntry(context: coreData.managedObjectContext)
+		entry.body = "Testing the Body"
+		
+		do {
+			try coreData.saveContext()
+		} catch let error as NSError {
+			XCTAssertNotNil(error, "There should be an error because a date is required for each entry NSValidationError")
+		}
+	}
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F444EE531CC5D02900CD724D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE521CC5D02900CD724D /* AppDelegate.swift */; };
-		F444EE551CC5D02900CD724D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE541CC5D02900CD724D /* ViewController.swift */; };
+		F444EE551CC5D02900CD724D /* DiaryEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */; };
 		F444EE581CC5D02900CD724D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F444EE561CC5D02900CD724D /* Main.storyboard */; };
 		F444EE5B1CC5D02900CD724D /* FitJourney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F444EE591CC5D02900CD724D /* FitJourney.xcdatamodeld */; };
 		F444EE5D1CC5D02900CD724D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F444EE5C1CC5D02900CD724D /* Assets.xcassets */; };
@@ -19,6 +19,8 @@
 		F444EE7D1CC7198500CD724D /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE7B1CC7198500CD724D /* DiaryEntry.swift */; };
 		F444EE7F1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */; };
 		F444EE811CC71B8900CD724D /* DiaryEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */; };
+		F4735F5B1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */; };
+		F4735F5D1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +36,7 @@
 /* Begin PBXFileReference section */
 		F444EE4F1CC5D02900CD724D /* FitJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F444EE521CC5D02900CD724D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F444EE541CC5D02900CD724D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryViewController.swift; sourceTree = "<group>"; };
 		F444EE571CC5D02900CD724D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F444EE5A1CC5D02900CD724D /* FitJourney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FitJourney.xcdatamodel; sourceTree = "<group>"; };
 		F444EE5C1CC5D02900CD724D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		F444EE7B1CC7198500CD724D /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
 		F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DiaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTests.swift; sourceTree = "<group>"; };
+		F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryListTableViewController.swift; sourceTree = "<group>"; };
+		F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryListTableViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,14 +93,10 @@
 		F444EE511CC5D02900CD724D /* FitJourney */ = {
 			isa = PBXGroup;
 			children = (
+				F4735F591CC747EF00E4AC02 /* Layout */,
+				F4735F581CC747DB00E4AC02 /* Common */,
+				F4735F571CC747BF00E4AC02 /* DiaryEntry */,
 				F444EE771CC70A1900CD724D /* Data */,
-				F444EE521CC5D02900CD724D /* AppDelegate.swift */,
-				F444EE541CC5D02900CD724D /* ViewController.swift */,
-				F444EE561CC5D02900CD724D /* Main.storyboard */,
-				F444EE5C1CC5D02900CD724D /* Assets.xcassets */,
-				F444EE5E1CC5D02900CD724D /* LaunchScreen.storyboard */,
-				F444EE611CC5D02900CD724D /* Info.plist */,
-				F444EE591CC5D02900CD724D /* FitJourney.xcdatamodeld */,
 			);
 			path = FitJourney;
 			sourceTree = "<group>";
@@ -108,6 +108,7 @@
 				F444EE6C1CC5D02900CD724D /* Info.plist */,
 				F444EE751CC6F5A900CD724D /* CoreDataStackTests.swift */,
 				F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */,
+				F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */,
 			);
 			path = FitJourneyTests;
 			sourceTree = "<group>";
@@ -120,6 +121,35 @@
 				F444EE781CC70A3500CD724D /* CoreDataStack.swift */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		F4735F571CC747BF00E4AC02 /* DiaryEntry */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE591CC5D02900CD724D /* FitJourney.xcdatamodeld */,
+				F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */,
+				F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */,
+			);
+			name = DiaryEntry;
+			sourceTree = "<group>";
+		};
+		F4735F581CC747DB00E4AC02 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE521CC5D02900CD724D /* AppDelegate.swift */,
+				F444EE5C1CC5D02900CD724D /* Assets.xcassets */,
+				F444EE611CC5D02900CD724D /* Info.plist */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		F4735F591CC747EF00E4AC02 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE5E1CC5D02900CD724D /* LaunchScreen.storyboard */,
+				F444EE561CC5D02900CD724D /* Main.storyboard */,
+			);
+			name = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,7 +254,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F444EE7F1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift in Sources */,
-				F444EE551CC5D02900CD724D /* ViewController.swift in Sources */,
+				F444EE551CC5D02900CD724D /* DiaryEntryViewController.swift in Sources */,
+				F4735F5B1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift in Sources */,
 				F444EE531CC5D02900CD724D /* AppDelegate.swift in Sources */,
 				F444EE5B1CC5D02900CD724D /* FitJourney.xcdatamodeld in Sources */,
 				F444EE7D1CC7198500CD724D /* DiaryEntry.swift in Sources */,
@@ -237,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F444EE6B1CC5D02900CD724D /* FitJourneyTests.swift in Sources */,
+				F4735F5D1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift in Sources */,
 				F444EE761CC6F5A900CD724D /* CoreDataStackTests.swift in Sources */,
 				F444EE811CC71B8900CD724D /* DiaryEntryTests.swift in Sources */,
 			);
@@ -422,6 +454,7 @@
 				F444EE711CC5D02900CD724D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F444EE721CC5D02900CD724D /* Build configuration list for PBXNativeTarget "FitJourneyTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +463,7 @@
 				F444EE741CC5D02900CD724D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

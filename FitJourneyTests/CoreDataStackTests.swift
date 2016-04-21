@@ -51,7 +51,11 @@ class CoreDataStackTests: XCTestCase {
 		diary.date = NSDate()
 		diary.mood = Int16(DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue)
 		
-		coreData.saveContext()
+		do {
+			try coreData.saveContext()
+		} catch let error as NSError {
+			print("show alert controller here \(error)")
+		}
 		
  		XCTAssertEqual(coreData.managedObjectContext.registeredObjects.count, 1)
 		
@@ -61,8 +65,10 @@ class CoreDataStackTests: XCTestCase {
 		let fetchRequest = NSFetchRequest(entityName: "DiaryEntry")
 		let batchDelete = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 		
+		batchDelete.resultType = .ResultTypeCount
+		
 		do {
-			try coreData.persistentStoreCoordinator?.executeRequest(batchDelete, withContext: coreData.managedObjectContext)
+			try coreData.managedObjectContext.executeRequest(batchDelete)
 		} catch let error as NSError {
 			print(error)
 			XCTAssertTrue(false)
