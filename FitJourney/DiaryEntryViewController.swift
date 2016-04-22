@@ -36,7 +36,7 @@ class DiaryEntryViewController: UIViewController {
 		//save context
 		let entry = DiaryEntry(context: coreData.managedObjectContext)
 		entry.body = entryTextField.text!
-		entry.date = NSDate()
+		entry.date = NSDate().timeIntervalSince1970
 		
 		do {
 			try coreData.saveContext()

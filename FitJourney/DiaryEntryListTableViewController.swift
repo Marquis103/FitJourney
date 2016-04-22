@@ -44,6 +44,16 @@ class DiaryEntryTableViewController: UITableViewController {
         return 0
     }
 	
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath)
+		
+		let entry:DiaryEntry = fetchedResultsController.objectAtIndexPath(indexPath) as! DiaryEntry
+		
+		cell.textLabel?.text = entry.body
+		
+		return cell
+	}
+	
 	//MARK: FetchRequest
 	func entryListFetchRequest() -> NSFetchRequest {
 		let fetchRequest = NSFetchRequest(entityName: "DiaryEntry")
@@ -56,7 +66,7 @@ class DiaryEntryTableViewController: UITableViewController {
 	lazy var fetchedResultsController:NSFetchedResultsController = {
 		let coreData = CoreDataStack.defaultStack
 		
-		let fetchedResultsController = NSFetchedResultsController(fetchRequest: self.entryListFetchRequest(), managedObjectContext: coreData.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: self.entryListFetchRequest(), managedObjectContext: coreData.managedObjectContext, sectionNameKeyPath: "sectionName", cacheName: nil)
 		
 		fetchedResultsController.delegate = self
 		
@@ -64,16 +74,29 @@ class DiaryEntryTableViewController: UITableViewController {
 	}()
 	
 	//MARK: TableViewControllerDelegate
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath)
-
-		let entry:DiaryEntry = fetchedResultsController.objectAtIndexPath(indexPath) as! DiaryEntry
-		
-		cell.textLabel?.text = entry.body
-
-        return cell
-    }
+	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if editingStyle == .Delete {
+			let entry = fetchedResultsController.objectAtIndexPath(indexPath)
+			
+			let coreData = CoreDataStack.defaultStack
+			
+			coreData.managedObjectContext.deleteObject(entry as! NSManagedObject)
+			
+			do {
+				try coreData.saveContext()
+			} catch let error as NSError {
+				print(error)
+			}
+		}
+	}
 	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if let sectionInfo = fetchedResultsController.sections {
+			return sectionInfo[section].name
+		}
+		
+		return ""
+	}
 	
 
     /*
@@ -84,17 +107,7 @@ class DiaryEntryTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+	
 
     /*
     // Override to support rearranging the table view.
@@ -124,8 +137,45 @@ class DiaryEntryTableViewController: UITableViewController {
 }
 
 extension DiaryEntryTableViewController: NSFetchedResultsControllerDelegate {
+	func controllerWillChangeContent(controller: NSFetchedResultsController) {
+		tableView.beginUpdates()
+	}
+	
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+		switch(type) {
+		case .Delete:
+			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+			break
+		case .Insert:
+			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+			break
+		case .Update:
+			tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+			break
+		default:
+			break
+		}
+		
+	}
+	
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		self.tableView.reloadData()
+		tableView.endUpdates()
+	}
+	
+	func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+		switch type {
+		case .Insert:
+			tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+			break
+			
+		case .Delete:
+			tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+			break
+			
+		default:
+			break
+			
+		}
 	}
 }
 

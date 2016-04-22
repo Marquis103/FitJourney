@@ -37,4 +37,24 @@ class DiaryEntryListTableViewControllerTests: XCTestCase {
 		
 		XCTAssertNotNil(fetchedResultsController, "FetchedResultsController for diary entries should not be nil")
 	}
+	
+	func testTableViewSectionName() {
+		let coreData = CoreDataStack.defaultStack
+		
+		let entry = DiaryEntry(context: coreData.managedObjectContext)
+		
+		entry.body = "testTableViewControllerSectionName"
+		let components = NSDateComponents()
+		components.month = 1
+		components.year = 2015
+		
+		let calendar = NSCalendar.currentCalendar()
+		let date = calendar.dateFromComponents(components)!
+		entry.date = date.timeIntervalSince1970
+		entry.mood = Int16(DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue)
+		
+		
+		XCTAssertEqual(entry.sectionName, "Jan 2015", "Entry section name should equal ")
+		
+	}
 }

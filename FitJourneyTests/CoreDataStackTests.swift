@@ -45,10 +45,12 @@ class CoreDataStackTests: XCTestCase {
 	}
 	
 	func testSaveContext() {
+		let currentObjectCount = coreData.managedObjectContext.registeredObjects.count
+		
 		//create a diary object
 		let diary = DiaryEntry(context: coreData.managedObjectContext)
 		diary.body = "Test Body"
-		diary.date = NSDate()
+		diary.date = NSDate().timeIntervalSince1970
 		diary.mood = Int16(DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue)
 		
 		do {
@@ -57,7 +59,7 @@ class CoreDataStackTests: XCTestCase {
 			print("show alert controller here \(error)")
 		}
 		
- 		XCTAssertEqual(coreData.managedObjectContext.registeredObjects.count, 1)
+ 		XCTAssertEqual(coreData.managedObjectContext.registeredObjects.count, currentObjectCount + 1)
 		
 	}
 	
@@ -69,11 +71,20 @@ class CoreDataStackTests: XCTestCase {
 		
 		do {
 			try coreData.managedObjectContext.executeRequest(batchDelete)
+			
+			do {
+				try coreData.saveContext()
+			} catch let error as NSError {
+				print("show alert controller here \(error)")
+			}
+			
 		} catch let error as NSError {
 			print(error)
 			XCTAssertTrue(false)
 			return
 		}
+		
+		coreData.managedObjectContext.reset()
 		
 		XCTAssertEqual(coreData.managedObjectContext.registeredObjects.count, 0)
 	}

@@ -15,9 +15,8 @@ import CoreData
 extension DiaryEntry {
 
     @NSManaged var body: String
-    @NSManaged var date: NSDate
+    @NSManaged var date: NSTimeInterval
     @NSManaged var mood: Int16
     @NSManaged var imageData: NSData?
     @NSManaged var location: String?
-
 }
