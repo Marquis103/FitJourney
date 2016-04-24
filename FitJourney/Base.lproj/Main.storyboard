@@ -3,24 +3,73 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Journal Entries-->
         <scene sceneID="4Y4-2B-GfO">
             <objects>
                 <tableViewController id="7bo-Lf-uKb" customClass="DiaryEntryTableViewController" customModule="FitJourney" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yWx-6N-TiO">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="274" sectionHeaderHeight="28" sectionFooterHeight="28" id="yWx-6N-TiO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryCell" id="mFo-s3-IYa">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryCell" rowHeight="274" id="mFo-s3-IYa" customClass="DiaryEntryTableViewCell" customModule="FitJourney" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="274"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mFo-s3-IYa" id="XlO-FB-FPB">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="273.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yog-q4-cfZ">
+                                            <rect key="frame" x="120" y="8" width="360" height="27"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.1803921568627451" green="0.31372549019607843" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pe-lZ-Dww">
+                                            <rect key="frame" x="120" y="219" width="385" height="23.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="385" id="dtK-tA-bRx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                            <color key="textColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NwY-Ls-RFi">
+                                            <rect key="frame" x="16" y="8" width="71" height="71"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="msq-2s-KW5">
+                                            <rect key="frame" x="65" y="62" width="32" height="32"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2h-1D-YC7">
+                                            <rect key="frame" x="120" y="50" width="202" height="151"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="202" id="tPf-yI-40O"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2pe-lZ-Dww" firstAttribute="leading" secondItem="yog-q4-cfZ" secondAttribute="leading" id="7P3-9r-RUA"/>
+                                        <constraint firstItem="yog-q4-cfZ" firstAttribute="top" secondItem="XlO-FB-FPB" secondAttribute="topMargin" id="GE4-Pm-TsP"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2pe-lZ-Dww" secondAttribute="bottom" constant="22.5" id="MT8-3D-dZ6"/>
+                                        <constraint firstItem="D2h-1D-YC7" firstAttribute="leading" secondItem="yog-q4-cfZ" secondAttribute="leading" id="aUI-nq-KDB"/>
+                                        <constraint firstItem="D2h-1D-YC7" firstAttribute="top" secondItem="yog-q4-cfZ" secondAttribute="bottom" constant="8" symbolic="YES" id="smp-jK-UQx"/>
+                                        <constraint firstItem="2pe-lZ-Dww" firstAttribute="leading" secondItem="XlO-FB-FPB" secondAttribute="leadingMargin" constant="112" id="vr1-6G-QlT"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="entryBodyLabel" destination="D2h-1D-YC7" id="fgp-Y7-NV5"/>
+                                    <outlet property="entryHeaderLabel" destination="yog-q4-cfZ" id="fAN-cg-ksF"/>
+                                    <outlet property="entryImage" destination="NwY-Ls-RFi" id="D1H-5p-YqR"/>
+                                    <outlet property="entryLocationLabel" destination="2pe-lZ-Dww" id="FaK-TN-oMi"/>
+                                    <outlet property="entryMoodImage" destination="msq-2s-KW5" id="RTb-6Z-jXd"/>
+                                    <segue destination="KB5-N0-Ra0" kind="presentation" identifier="editEntry" id="Hs9-IF-Jca"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -29,7 +78,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="2PO-sR-3Eu">
+                    <navigationItem key="navigationItem" title="Journal Entries" id="2PO-sR-3Eu">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YS0-Ui-dlR">
                             <connections>
                                 <segue destination="KB5-N0-Ra0" kind="presentation" id="PIJ-B3-Smn"/>
@@ -40,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clQ-KV-jrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="566"/>
+            <point key="canvasLocation" x="1186" y="604"/>
         </scene>
         <!--Diary Entry View Controller-->
         <scene sceneID="JeS-cK-Zyj">
@@ -55,10 +104,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z5f-0v-xBw">
-                                <rect key="frame" x="20" y="82" width="560" height="30"/>
+                                <rect key="frame" x="20" y="165" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9N-yx-zyR">
+                                <rect key="frame" x="20" y="83" width="560" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.1803921568627451" green="0.31372549019607843" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -75,17 +130,70 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="accessoryView" destination="lne-Pk-0cX" id="ZXu-UM-Yt3"/>
+                        <outlet property="averageMood" destination="aDz-9B-Cvr" id="af0-In-hG0"/>
+                        <outlet property="badMood" destination="uQa-Mv-sFL" id="oWD-km-5W6"/>
+                        <outlet property="entryDateLabel" destination="v9N-yx-zyR" id="ZCp-27-x91"/>
                         <outlet property="entryTextField" destination="z5f-0v-xBw" id="ewm-ef-Yib"/>
+                        <outlet property="goodMood" destination="mTf-v5-7KJ" id="hOp-vK-5f2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yPx-gg-b80" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" id="lne-Pk-0cX">
+                    <rect key="frame" x="0.0" y="0.0" width="584" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" tag="998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQa-Mv-sFL">
+                            <rect key="frame" x="0.0" y="0.0" width="195" height="28"/>
+                            <color key="backgroundColor" red="0.74117647058823533" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="8rp-2B-bx2"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Bad" image="icn_bad_lrg">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="moodPicked:" destination="nLE-Wn-xo9" eventType="touchUpInside" id="kn0-fy-MTq"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDz-9B-Cvr">
+                            <rect key="frame" x="195" y="0.0" width="195" height="28"/>
+                            <color key="backgroundColor" red="0.35145590344111799" green="0.35269125120451872" blue="0.35639729449472102" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="FpQ-A6-0LI"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Average" image="icn_average_lrg">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="moodPicked:" destination="nLE-Wn-xo9" eventType="touchUpInside" id="Lxn-OE-8bx"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTf-v5-7KJ">
+                            <rect key="frame" x="390" y="0.0" width="195" height="28"/>
+                            <color key="backgroundColor" red="0.38823529411764707" green="0.57647058823529407" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="ZqE-we-UT2"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Good" image="icn_good_lrg">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="moodPicked:" destination="nLE-Wn-xo9" eventType="touchUpInside" id="vQW-e6-CW2"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </objects>
             <point key="canvasLocation" x="2086" y="1243"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Diary Navigation Controller-->
         <scene sceneID="OnH-s8-u9t">
             <objects>
-                <navigationController id="R1B-E8-fN3" sceneMemberID="viewController">
+                <navigationController id="R1B-E8-fN3" customClass="DiaryNavigationController" customModule="FitJourney" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nH3-bV-lBq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="452" y="566"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Diary Navigation Controller-->
         <scene sceneID="PHG-pC-3Y5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KB5-N0-Ra0" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KB5-N0-Ra0" customClass="DiaryNavigationController" customModule="FitJourney" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Fv-da-sO6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -117,4 +225,12 @@
             <point key="canvasLocation" x="1228" y="1465"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icn_average_lrg" width="15" height="15"/>
+        <image name="icn_bad_lrg" width="15" height="15"/>
+        <image name="icn_good_lrg" width="15" height="15"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hs9-IF-Jca"/>
+    </inferredMetricsTieBreakers>
 </document>

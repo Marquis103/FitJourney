@@ -45,11 +45,11 @@ class DiaryEntryTableViewController: UITableViewController {
     }
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as! DiaryEntryTableViewCell
 		
 		let entry:DiaryEntry = fetchedResultsController.objectAtIndexPath(indexPath) as! DiaryEntry
 		
-		cell.textLabel?.text = entry.body
+		cell.configureCell(entry)
 		
 		return cell
 	}
@@ -98,6 +98,28 @@ class DiaryEntryTableViewController: UITableViewController {
 		return ""
 	}
 	
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		let entry = fetchedResultsController.objectAtIndexPath(indexPath)
+		
+		return DiaryEntryTableViewCell.heightForEntry(entry as! DiaryEntry)
+	}
+	
+	
+	// MARK: - Navigation
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "editEntry" {
+			let tableViewCell = sender as! UITableViewCell
+			let indexPath = tableView.indexPathForCell(tableViewCell)!
+			
+			let destinationController = segue.destinationViewController as! UINavigationController
+			let entryViewController = destinationController.topViewController as! DiaryEntryViewController
+			
+			entryViewController.entry = fetchedResultsController.objectAtIndexPath(indexPath)  as? DiaryEntry
+		}
+	}
+
+	
 
     /*
     // Override to support conditional editing of the table view.
@@ -124,15 +146,7 @@ class DiaryEntryTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
 
 }
 

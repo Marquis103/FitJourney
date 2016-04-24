@@ -16,7 +16,7 @@ extension DiaryEntry {
 
     @NSManaged var body: String
     @NSManaged var date: NSTimeInterval
-    @NSManaged var mood: Int16
+    @NSManaged var mood: Int
     @NSManaged var imageData: NSData?
     @NSManaged var location: String?
 }

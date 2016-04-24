@@ -57,4 +57,6 @@ class DiaryEntryListTableViewControllerTests: XCTestCase {
 		XCTAssertEqual(entry.sectionName, "Jan 2015", "Entry section name should equal ")
 		
 	}
+	
+	
 }
