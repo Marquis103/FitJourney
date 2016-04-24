@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class DiaryEntryViewController: UIViewController {
 	
@@ -55,6 +56,7 @@ class DiaryEntryViewController: UIViewController {
 		dateFormatter.dateFormat = "EEEE MMMM d, yyyy"
 		entryDateLabel.text = dateFormatter.stringFromDate(date!)
 		entryTextField.inputAccessoryView = accessoryView
+		imageButton.layer.cornerRadius = CGRectGetWidth(imageButton.frame) / 2.0
 	}
 
 	override func didReceiveMemoryWarning() {

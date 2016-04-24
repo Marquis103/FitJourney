@@ -23,6 +23,8 @@
 		F4735F5D1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */; };
 		F4735F5F1CCA79D400E4AC02 /* DiaryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4735F5E1CCA79D400E4AC02 /* DiaryNavigationController.swift */; };
 		F4735F611CCA81E800E4AC02 /* DiaryEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4735F601CCA81E800E4AC02 /* DiaryEntryTableViewCell.swift */; };
+		F4735F891CCD8E8500E4AC02 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4735F881CCD8E8500E4AC02 /* QuartzCore.framework */; };
+		F4735F8B1CCD8E8C00E4AC02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4735F8A1CCD8E8C00E4AC02 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryListTableViewControllerTests.swift; sourceTree = "<group>"; };
 		F4735F5E1CCA79D400E4AC02 /* DiaryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryNavigationController.swift; sourceTree = "<group>"; };
 		F4735F601CCA81E800E4AC02 /* DiaryEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTableViewCell.swift; sourceTree = "<group>"; };
+		F4735F881CCD8E8500E4AC02 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F4735F8A1CCD8E8C00E4AC02 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4735F8B1CCD8E8C00E4AC02 /* CoreData.framework in Frameworks */,
+				F4735F891CCD8E8500E4AC02 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +85,8 @@
 		F444EE461CC5D02900CD724D = {
 			isa = PBXGroup;
 			children = (
+				F4735F8A1CCD8E8C00E4AC02 /* CoreData.framework */,
+				F4735F881CCD8E8500E4AC02 /* QuartzCore.framework */,
 				F444EE511CC5D02900CD724D /* FitJourney */,
 				F444EE691CC5D02900CD724D /* FitJourneyTests */,
 				F444EE501CC5D02900CD724D /* Products */,

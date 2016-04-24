@@ -53,6 +53,8 @@ class DiaryEntryTableViewCell: UITableViewCell {
 		} else if entry.mood == DiaryEntry.DiaryEntryMood.DiaryMoodBad.rawValue {
 			entryMoodImage.image = UIImage(named: "icn_bad")
 		}
+		
+		entryImage.layer.cornerRadius = CGRectGetWidth(entryImage.frame) / 2.0
 	}
 	
 	
