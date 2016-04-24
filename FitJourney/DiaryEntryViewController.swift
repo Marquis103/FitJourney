@@ -24,13 +24,19 @@ class DiaryEntryViewController: UIViewController {
 	@IBOutlet weak var averageMood: UIButton!
 	@IBOutlet weak var goodMood: UIButton!
 	@IBOutlet weak var entryDateLabel: UILabel!
+	@IBOutlet weak var imageButton: UIButton!
+	private var pickedImage:UIImage? {
+		didSet {
+			imageButton.setImage(pickedImage, forState: .Normal)
+		}
+	}
 	
 	lazy var coreData:CoreDataStack = {
 		return CoreDataStack.defaultStack
 	}()
 	
 	//MARK: Outlets
-	@IBOutlet weak var entryTextField: UITextField!
+	@IBOutlet weak var entryTextField: UITextView!
 	
 	//MARK: View Controller Methods
 	override func viewDidLoad() {
@@ -56,6 +62,12 @@ class DiaryEntryViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		entryTextField.becomeFirstResponder()
+	}
+	
 	//MARK: Helper Functions
 	func dismissSelf() {
 		presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -69,6 +81,44 @@ class DiaryEntryViewController: UIViewController {
 		} catch let error as NSError {
 			print("show alert controller here \(error)")
 		}
+	}
+	
+	func promptForSource() {
+		let actionSheet = UIAlertController(title: "Image Source", message: nil, preferredStyle: .ActionSheet)
+		
+		let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (action) in
+			self.promptForCamera()
+		}
+		
+		let photosAction = UIAlertAction(title: "Photo Roll", style: .Default) { (action) in
+			self.promptForPhotoLibrary()
+		}
+		
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+			
+		}
+		
+		actionSheet.addAction(cameraAction)
+		actionSheet.addAction(photosAction)
+		actionSheet.addAction(cancelAction)
+		
+		presentViewController(actionSheet, animated: true, completion: nil)
+		
+		
+	}
+	
+	func promptForCamera() {
+		let imagePicker = UIImagePickerController()
+		imagePicker.sourceType = .Camera
+		imagePicker.delegate = self
+		presentViewController(imagePicker, animated: true, completion: nil)
+	}
+	
+	func promptForPhotoLibrary() {
+		let imagePicker = UIImagePickerController()
+		imagePicker.sourceType = .PhotoLibrary
+		imagePicker.delegate = self
+		presentViewController(imagePicker, animated: true, completion: nil)
 	}
 	
 	func setMoodPicked() {
@@ -95,6 +145,16 @@ class DiaryEntryViewController: UIViewController {
 	}
 
 	//MARK: IBActions
+	
+	@IBAction func addImageToPost(sender: UIButton) {
+		if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+			promptForSource()
+		} else {
+			//if camera is not available
+			promptForPhotoLibrary()
+		}
+	}
+	
 	@IBAction func doneAction(sender: UIBarButtonItem) {
 		if entry != nil {
 			updateEntry()
@@ -103,6 +163,12 @@ class DiaryEntryViewController: UIViewController {
 			let entry = DiaryEntry(context: coreData.managedObjectContext)
 			entry.body = entryTextField.text!
 			entry.date = NSDate().timeIntervalSince1970
+			if let image = pickedImage {
+				entry.imageData = UIImageJPEGRepresentation(image, 0.80)
+			} else {
+				entry.imageData = UIImageJPEGRepresentation(UIImage(named: "icn_noimage")!, 0.80)
+			}
+			
 			if let mood = mood {
 				entry.mood = mood
 			} else {
@@ -138,3 +204,15 @@ class DiaryEntryViewController: UIViewController {
 	}
 }
 
+extension DiaryEntryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+		let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+		self.pickedImage = image
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+}

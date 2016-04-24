@@ -103,17 +103,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z5f-0v-xBw">
-                                <rect key="frame" x="20" y="165" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9N-yx-zyR">
-                                <rect key="frame" x="20" y="83" width="560" height="21"/>
+                                <rect key="frame" x="135" y="79" width="318" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.1803921568627451" green="0.31372549019607843" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmt-g1-sQW">
+                                <rect key="frame" x="20" y="79" width="95" height="95"/>
+                                <state key="normal" image="icn_noimage"/>
+                                <connections>
+                                    <action selector="addImageToPost:" destination="nLE-Wn-xo9" eventType="touchUpInside" id="Ncp-xS-rTx"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wPW-eR-J3D">
+                                <rect key="frame" x="135" y="134" width="364" height="226"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -134,8 +142,9 @@
                         <outlet property="averageMood" destination="aDz-9B-Cvr" id="af0-In-hG0"/>
                         <outlet property="badMood" destination="uQa-Mv-sFL" id="oWD-km-5W6"/>
                         <outlet property="entryDateLabel" destination="v9N-yx-zyR" id="ZCp-27-x91"/>
-                        <outlet property="entryTextField" destination="z5f-0v-xBw" id="ewm-ef-Yib"/>
+                        <outlet property="entryTextField" destination="wPW-eR-J3D" id="3PI-Cx-NJD"/>
                         <outlet property="goodMood" destination="mTf-v5-7KJ" id="hOp-vK-5f2"/>
+                        <outlet property="imageButton" destination="Gmt-g1-sQW" id="0pM-jq-HkM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yPx-gg-b80" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,6 +238,7 @@
         <image name="icn_average_lrg" width="15" height="15"/>
         <image name="icn_bad_lrg" width="15" height="15"/>
         <image name="icn_good_lrg" width="15" height="15"/>
+        <image name="icn_noimage" width="95" height="95"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Hs9-IF-Jca"/>
