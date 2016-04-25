@@ -8,11 +8,14 @@
 
 import UIKit
 import QuartzCore
+import CoreLocation
 
 class DiaryEntryViewController: UIViewController {
 	
 	var entry:DiaryEntry?
 	var date:NSDate?
+	var locationManager: CLLocationManager?
+	var location:String?
 	
 	var mood:Int! {
 		didSet {
@@ -50,6 +53,11 @@ class DiaryEntryViewController: UIViewController {
 		} else {
 			mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
 			date = NSDate()
+			
+			if CLLocationManager.locationServicesEnabled() {
+				loadLocation()
+			}
+			
 		}
 		
 		let dateFormatter = NSDateFormatter()
@@ -71,6 +79,14 @@ class DiaryEntryViewController: UIViewController {
 	}
 	
 	//MARK: Helper Functions
+	func loadLocation() {
+		locationManager = CLLocationManager()
+		locationManager?.delegate = self
+		locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
+		locationManager?.requestWhenInUseAuthorization()
+		locationManager?.startUpdatingLocation()
+	}
+	
 	func dismissSelf() {
 		presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
 	}
@@ -177,6 +193,10 @@ class DiaryEntryViewController: UIViewController {
 				entry.mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
 			}
 			
+			if let location = location {
+				entry.location = location
+			}
+			
 			do {
 				try coreData.saveContext()
 			} catch let error as NSError {
@@ -217,4 +237,30 @@ extension DiaryEntryViewController: UIImagePickerControllerDelegate, UINavigatio
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
+}
+
+extension DiaryEntryViewController: CLLocationManagerDelegate {
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		let location = locations.first
+		
+		if let location = location {
+			locationManager?.stopUpdatingLocation()
+			
+			let geoCoder = CLGeocoder()
+			
+			geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+				guard error == nil else {
+					print("there was an error getting the placemark")
+					return
+				}
+				let placemark = placemarks?.first
+				
+				if let placemark = placemark {
+					if let name = placemark.name {
+						self.location = name
+					}
+				}
+			})
+		}
+	}
 }

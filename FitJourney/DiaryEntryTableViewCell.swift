@@ -46,6 +46,12 @@ class DiaryEntryTableViewCell: UITableViewCell {
 			entryImage.image = UIImage(named: "icn_noimage")
 		}
 		
+		if entry.location?.characters.count > 0 {
+			entryLocationLabel.text = entry.location
+		} else {
+			entryLocationLabel.text = "No Location"
+		}
+		
 		if entry.mood == DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue {
 			entryMoodImage.image = UIImage(named: "icn_happy")
 		} else if entry.mood == DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue {
