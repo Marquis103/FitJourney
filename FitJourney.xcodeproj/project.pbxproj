@@ -105,10 +105,9 @@
 		F444EE511CC5D02900CD724D /* FitJourney */ = {
 			isa = PBXGroup;
 			children = (
+				F4735FA51CCEF0AC00E4AC02 /* Entities */,
 				F4735F591CC747EF00E4AC02 /* Layout */,
 				F4735F581CC747DB00E4AC02 /* Common */,
-				F4735F571CC747BF00E4AC02 /* DiaryEntry */,
-				F444EE771CC70A1900CD724D /* Data */,
 			);
 			path = FitJourney;
 			sourceTree = "<group>";
@@ -116,33 +115,20 @@
 		F444EE691CC5D02900CD724D /* FitJourneyTests */ = {
 			isa = PBXGroup;
 			children = (
+				F4735F8D1CCDC11A00E4AC02 /* ViewControllerTests */,
+				F4735F8C1CCDC0F400E4AC02 /* ModelTests */,
 				F444EE6A1CC5D02900CD724D /* FitJourneyTests.swift */,
 				F444EE6C1CC5D02900CD724D /* Info.plist */,
-				F444EE751CC6F5A900CD724D /* CoreDataStackTests.swift */,
-				F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */,
-				F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */,
 			);
 			path = FitJourneyTests;
-			sourceTree = "<group>";
-		};
-		F444EE771CC70A1900CD724D /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */,
-				F444EE7B1CC7198500CD724D /* DiaryEntry.swift */,
-				F444EE781CC70A3500CD724D /* CoreDataStack.swift */,
-			);
-			name = Data;
 			sourceTree = "<group>";
 		};
 		F4735F571CC747BF00E4AC02 /* DiaryEntry */ = {
 			isa = PBXGroup;
 			children = (
-				F4735F5E1CCA79D400E4AC02 /* DiaryNavigationController.swift */,
-				F444EE591CC5D02900CD724D /* FitJourney.xcdatamodeld */,
-				F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */,
-				F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */,
-				F4735F601CCA81E800E4AC02 /* DiaryEntryTableViewCell.swift */,
+				F4735FA11CCEF03D00E4AC02 /* Views */,
+				F4735FA01CCEF02B00E4AC02 /* Model */,
+				F4735F9F1CCEF00300E4AC02 /* Controllers */,
 			);
 			name = DiaryEntry;
 			sourceTree = "<group>";
@@ -150,8 +136,9 @@
 		F4735F581CC747DB00E4AC02 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F4735FA31CCEF06300E4AC02 /* Assets */,
+				F4735FA21CCEF05900E4AC02 /* Data */,
 				F444EE521CC5D02900CD724D /* AppDelegate.swift */,
-				F444EE5C1CC5D02900CD724D /* Assets.xcassets */,
 				F444EE611CC5D02900CD724D /* Info.plist */,
 			);
 			name = Common;
@@ -164,6 +151,75 @@
 				F444EE561CC5D02900CD724D /* Main.storyboard */,
 			);
 			name = Layout;
+			sourceTree = "<group>";
+		};
+		F4735F8C1CCDC0F400E4AC02 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE801CC71B8900CD724D /* DiaryEntryTests.swift */,
+				F444EE751CC6F5A900CD724D /* CoreDataStackTests.swift */,
+			);
+			name = ModelTests;
+			sourceTree = "<group>";
+		};
+		F4735F8D1CCDC11A00E4AC02 /* ViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4735F5C1CC88E7800E4AC02 /* DiaryEntryListTableViewControllerTests.swift */,
+			);
+			name = ViewControllerTests;
+			sourceTree = "<group>";
+		};
+		F4735F9F1CCEF00300E4AC02 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */,
+				F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */,
+				F4735F5E1CCA79D400E4AC02 /* DiaryNavigationController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F4735FA01CCEF02B00E4AC02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE7B1CC7198500CD724D /* DiaryEntry.swift */,
+				F444EE7E1CC71A1F00CD724D /* DiaryEntry+CoreDataProperties.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F4735FA11CCEF03D00E4AC02 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F4735F601CCA81E800E4AC02 /* DiaryEntryTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F4735FA21CCEF05900E4AC02 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE591CC5D02900CD724D /* FitJourney.xcdatamodeld */,
+				F444EE781CC70A3500CD724D /* CoreDataStack.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		F4735FA31CCEF06300E4AC02 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F444EE5C1CC5D02900CD724D /* Assets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		F4735FA51CCEF0AC00E4AC02 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F4735F571CC747BF00E4AC02 /* DiaryEntry */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

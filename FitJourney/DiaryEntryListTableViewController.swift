@@ -118,36 +118,6 @@ class DiaryEntryTableViewController: UITableViewController {
 			entryViewController.entry = fetchedResultsController.objectAtIndexPath(indexPath)  as? DiaryEntry
 		}
 	}
-
-	
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-	
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-	
-
 }
 
 extension DiaryEntryTableViewController: NSFetchedResultsControllerDelegate {

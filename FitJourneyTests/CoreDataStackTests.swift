@@ -51,7 +51,7 @@ class CoreDataStackTests: XCTestCase {
 		let diary = DiaryEntry(context: coreData.managedObjectContext)
 		diary.body = "Test Body"
 		diary.date = NSDate().timeIntervalSince1970
-		diary.mood = Int16(DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue)
+		diary.mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
 		
 		do {
 			try coreData.saveContext()

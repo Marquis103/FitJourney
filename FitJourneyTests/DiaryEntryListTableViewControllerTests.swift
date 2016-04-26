@@ -51,12 +51,23 @@ class DiaryEntryListTableViewControllerTests: XCTestCase {
 		let calendar = NSCalendar.currentCalendar()
 		let date = calendar.dateFromComponents(components)!
 		entry.date = date.timeIntervalSince1970
-		entry.mood = Int16(DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue)
+		entry.mood = DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue
 		
 		
 		XCTAssertEqual(entry.sectionName, "Jan 2015", "Entry section name should equal ")
 		
 	}
 	
-	
+	func testfetchedResultsController() {
+		let results = diaryEntryTableView.fetchedResultsController.fetchedObjects as? [DiaryEntry]
+		
+		if let results = results {
+			let entry = results.first
+			XCTAssertNotNil(entry, "Journal entry should not be nil")
+			XCTAssertNotNil(entry?.body, "Body of an entry can never be nil")
+			XCTAssertNotNil(entry?.date, "Date of an entry can never be nil")
+		} else {
+			XCTAssertEqual(results?.count, nil)
+		}
+	}
 }

@@ -23,6 +23,9 @@ class DiaryEntryViewController: UIViewController {
 		}
 	}
 	
+	@IBOutlet weak var lblCurrentWordCount: UILabel!
+	@IBOutlet weak var lblMaxWordCount: UILabel!
+	@IBOutlet weak var lblLocation: UILabel!
 	@IBOutlet var accessoryView: UIStackView!
 	@IBOutlet weak var badMood: UIButton!
 	@IBOutlet weak var averageMood: UIButton!
@@ -45,11 +48,29 @@ class DiaryEntryViewController: UIViewController {
 	//MARK: View Controller Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		entryTextField.delegate = self
+		entryTextField.layoutManager.delegate = self
+		entryTextField.layer.borderWidth = 2.0
+		entryTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
+		entryTextField.layer.cornerRadius = 5
+		/*entryTextField.layer.masksToBounds = false
+		entryTextField.layer.shadowColor = UIColor.blackColor().CGColor
+		entryTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+		entryTextField.layer.shadowRadius = 1.0*/
+		
 		
 		if let entry = entry {
 			entryTextField.text = entry.body
 			mood = entry.mood
 			date = NSDate(timeIntervalSince1970: entry.date)
+			if let imageData = entry.imageData {
+				imageButton.setImage(UIImage(data: imageData), forState: .Normal)
+			}
+			if let entryLocation = entry.location {
+				location = entryLocation
+				lblLocation.text = location
+				
+			}
 		} else {
 			mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
 			date = NSDate()
@@ -93,6 +114,8 @@ class DiaryEntryViewController: UIViewController {
 	
 	func updateEntry() {
 		entry?.body = entryTextField.text ?? ""
+		entry?.imageData = UIImageJPEGRepresentation(imageButton.currentImage!, 0.80)
+		entry?.mood = mood
 		
 		do {
 			try coreData.saveContext()
@@ -257,10 +280,46 @@ extension DiaryEntryViewController: CLLocationManagerDelegate {
 				
 				if let placemark = placemark {
 					if let name = placemark.name {
+						self.lblLocation.text = name
 						self.location = name
 					}
 				}
 			})
 		}
+	}
+}
+
+extension DiaryEntryViewController:NSLayoutManagerDelegate {
+	func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+		return 10
+	}
+}
+
+extension DiaryEntryViewController:UITextViewDelegate {
+	func textViewDidChange(textView: UITextView) {
+		let charCount = textView.text.characters.count
+		
+		if charCount > 0 && charCount < 435 {
+			lblCurrentWordCount.text = String(charCount)
+			lblCurrentWordCount.textColor = UIColor(red: 80.0/255.0, green: 141.0/255.0, blue: 15.0/255.0, alpha: 1.0)
+			
+		} else if charCount >= 435 && charCount <= 450 {
+			lblCurrentWordCount.text = String(charCount)
+			lblCurrentWordCount.textColor = UIColor.redColor()
+		} else {
+			textView.deleteBackward()
+			lblCurrentWordCount.text = String(charCount - 1)
+			lblCurrentWordCount.textColor = UIColor.redColor()
+		}
+	}
+	
+	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+		let currentCharacterLength = textView.text.characters.count ?? 0
+		if range.length + range.location > currentCharacterLength {
+			return false
+		}
+		
+		let newLength = currentCharacterLength + text.characters.count - range.length
+		return newLength <= 450
 	}
 }
