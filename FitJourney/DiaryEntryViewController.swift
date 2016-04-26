@@ -86,6 +86,8 @@ class DiaryEntryViewController: UIViewController {
 		date = NSDate(timeIntervalSince1970: entry!.date)
 		
 		entryDateLabel.text = DiaryEntryDateFormatter.sharedDateFormatter.entryFormatter.stringFromDate(date!)
+		entryTextView.inputAccessoryView = accessoryView
+		imageButton.layer.cornerRadius = CGRectGetWidth(imageButton.frame) / 2.0
 		
 		if let imageData = entry!.imageData {
 			imageButton.setImage(UIImage(data: imageData), forState: .Normal)
