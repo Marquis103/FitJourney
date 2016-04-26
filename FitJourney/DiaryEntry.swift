@@ -6,7 +6,7 @@
 //  Copyright © 2016 Marquis Dennis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 
@@ -21,10 +21,10 @@ class DiaryEntry: NSManagedObject {
 		return formatter.stringFromDate(entrySectionDate)
 	}
 	
-	enum DiaryEntryMood: Int {
-		case DiaryMoodGood = 0
-		case DiaryMoodAverage = 1
-		case DiaryMoodBad = 2
+	enum DiaryEntryMood: Int16 {
+		case Good = 0
+		case Average = 1
+		case Bad = 2
 	}
 
 	override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -34,5 +34,33 @@ class DiaryEntry: NSManagedObject {
 	init(context: NSManagedObjectContext) {
 		let entryEntity = NSEntityDescription.entityForName("DiaryEntry", inManagedObjectContext: context)!
 		super.init(entity: entryEntity, insertIntoManagedObjectContext: context)
+	}
+	
+	func saveEntry(context: NSManagedObjectContext) {
+		
+	}
+	
+	func saveEntry(withBody text:String, mood:Int16, image: UIImage?, location:String?) {
+		self.body = text
+		self.mood = mood
+		
+		if self.date == 0.0 {
+			self.date = NSDate().timeIntervalSince1970
+		}
+		if self.location == nil {
+			self.location = location ?? "No Location"
+		}
+		
+		if let image = image {
+			self.imageData = UIImageJPEGRepresentation(image, 0.80)
+		} else {
+			self.imageData = UIImageJPEGRepresentation(UIImage(named: "icn_noimage")!, 0.80)
+		}
+		
+		do {
+			try self.managedObjectContext?.save()
+		} catch let error as NSError {
+			print("show alert controller here \(error)")
+		}
 	}
 }

@@ -7,31 +7,22 @@
 //
 
 import UIKit
-import QuartzCore
 import CoreLocation
 
 class DiaryEntryViewController: UIViewController {
 	
+	//MARK: Properties
 	var entry:DiaryEntry?
 	var date:NSDate?
 	var locationManager: CLLocationManager?
 	var location:String?
 	
-	var mood:Int! {
+	var mood:Int16! {
 		didSet {
 			setMoodPicked()
 		}
 	}
 	
-	@IBOutlet weak var lblCurrentWordCount: UILabel!
-	@IBOutlet weak var lblMaxWordCount: UILabel!
-	@IBOutlet weak var lblLocation: UILabel!
-	@IBOutlet var accessoryView: UIStackView!
-	@IBOutlet weak var badMood: UIButton!
-	@IBOutlet weak var averageMood: UIButton!
-	@IBOutlet weak var goodMood: UIButton!
-	@IBOutlet weak var entryDateLabel: UILabel!
-	@IBOutlet weak var imageButton: UIButton!
 	private var pickedImage:UIImage? {
 		didSet {
 			imageButton.setImage(pickedImage, forState: .Normal)
@@ -43,60 +34,41 @@ class DiaryEntryViewController: UIViewController {
 	}()
 	
 	//MARK: Outlets
-	@IBOutlet weak var entryTextField: UITextView!
+	@IBOutlet weak var lblCurrentWordCount: UILabel!
+	@IBOutlet weak var lblMaxWordCount: UILabel!
+	@IBOutlet weak var lblLocation: UILabel!
+	@IBOutlet var accessoryView: UIStackView!
+	@IBOutlet weak var badMood: UIButton!
+	@IBOutlet weak var averageMood: UIButton!
+	@IBOutlet weak var goodMood: UIButton!
+	@IBOutlet weak var entryDateLabel: UILabel!
+	@IBOutlet weak var imageButton: UIButton!
+	@IBOutlet weak var entryTextView: DiaryEntryTextView! {
+		didSet {
+			entryTextView.configureTextView()
+			entryTextView.delegate = self
+		}
+	}
 	
 	//MARK: View Controller Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		entryTextField.delegate = self
-		entryTextField.layoutManager.delegate = self
-		entryTextField.layer.borderWidth = 2.0
-		entryTextField.layer.borderColor = UIColor.lightGrayColor().CGColor
-		entryTextField.layer.cornerRadius = 5
-		/*entryTextField.layer.masksToBounds = false
-		entryTextField.layer.shadowColor = UIColor.blackColor().CGColor
-		entryTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-		entryTextField.layer.shadowRadius = 1.0*/
 		
-		
-		if let entry = entry {
-			entryTextField.text = entry.body
-			mood = entry.mood
-			date = NSDate(timeIntervalSince1970: entry.date)
-			if let imageData = entry.imageData {
-				imageButton.setImage(UIImage(data: imageData), forState: .Normal)
-			}
-			if let entryLocation = entry.location {
-				location = entryLocation
-				lblLocation.text = location
-				
-			}
+		if let _ = entry {
+			populateView()
 		} else {
-			mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
-			date = NSDate()
+			setViewDefaults()
 			
 			if CLLocationManager.locationServicesEnabled() {
 				loadLocation()
 			}
-			
 		}
-		
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "EEEE MMMM d, yyyy"
-		entryDateLabel.text = dateFormatter.stringFromDate(date!)
-		entryTextField.inputAccessoryView = accessoryView
-		imageButton.layer.cornerRadius = CGRectGetWidth(imageButton.frame) / 2.0
-	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		entryTextField.becomeFirstResponder()
+		entryTextView.becomeFirstResponder()
 	}
 	
 	//MARK: Helper Functions
@@ -108,44 +80,52 @@ class DiaryEntryViewController: UIViewController {
 		locationManager?.startUpdatingLocation()
 	}
 	
+	func populateView() {
+		entryTextView.text = entry!.body
+		mood = entry!.mood
+		date = NSDate(timeIntervalSince1970: entry!.date)
+		
+		entryDateLabel.text = DiaryEntryDateFormatter.sharedDateFormatter.entryFormatter.stringFromDate(date!)
+		
+		if let imageData = entry!.imageData {
+			imageButton.setImage(UIImage(data: imageData), forState: .Normal)
+		}
+		if let entryLocation = entry!.location {
+			location = entryLocation
+			lblLocation.text = location
+			
+		}
+	}
+	
+	func setViewDefaults() {
+		mood = DiaryEntry.DiaryEntryMood.Average.rawValue
+		date = NSDate()
+		
+		entryDateLabel.text = DiaryEntryDateFormatter.sharedDateFormatter.entryFormatter.stringFromDate(date!)
+		
+		entryTextView.inputAccessoryView = accessoryView
+		imageButton.layer.cornerRadius = CGRectGetWidth(imageButton.frame) / 2.0
+	}
+	
 	func dismissSelf() {
 		presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	func updateEntry() {
-		entry?.body = entryTextField.text ?? ""
-		entry?.imageData = UIImageJPEGRepresentation(imageButton.currentImage!, 0.80)
-		entry?.mood = mood
-		
-		do {
-			try coreData.saveContext()
-		} catch let error as NSError {
-			print("show alert controller here \(error)")
-		}
-	}
-	
 	func promptForSource() {
 		let actionSheet = UIAlertController(title: "Image Source", message: nil, preferredStyle: .ActionSheet)
-		
 		let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (action) in
 			self.promptForCamera()
 		}
-		
 		let photosAction = UIAlertAction(title: "Photo Roll", style: .Default) { (action) in
 			self.promptForPhotoLibrary()
 		}
-		
-		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-			
-		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 		
 		actionSheet.addAction(cameraAction)
 		actionSheet.addAction(photosAction)
 		actionSheet.addAction(cancelAction)
 		
 		presentViewController(actionSheet, animated: true, completion: nil)
-		
-		
 	}
 	
 	func promptForCamera() {
@@ -168,15 +148,15 @@ class DiaryEntryViewController: UIViewController {
 		goodMood.alpha = 0.5
 		
 		switch mood {
-		case DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue:
+		case DiaryEntry.DiaryEntryMood.Average.rawValue:
 			averageMood.alpha = 1.0
 			break
 			
-		case DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue:
+		case DiaryEntry.DiaryEntryMood.Good.rawValue:
 			goodMood.alpha = 1.0
 			break
 			
-		case DiaryEntry.DiaryEntryMood.DiaryMoodBad.rawValue:
+		case DiaryEntry.DiaryEntryMood.Bad.rawValue:
 			badMood.alpha = 1.0
 			break
 			
@@ -197,34 +177,16 @@ class DiaryEntryViewController: UIViewController {
 	}
 	
 	@IBAction func doneAction(sender: UIBarButtonItem) {
+		guard entryTextView.text.characters.count > 0 else {
+			let alertController = DiaryEntryAlert.getUIDiaryAlert(withTitle: "Invalid Journal Entry", message: "Please enter text for journal entry")
+			presentViewController(alertController, animated: true, completion: nil)
+			return
+		}
+		
 		if entry != nil {
-			updateEntry()
+			entry?.saveEntry(withBody: entryTextView.text, mood: mood, image: imageButton.currentImage, location: nil)
 		} else {
-			//save context
-			let entry = DiaryEntry(context: coreData.managedObjectContext)
-			entry.body = entryTextField.text!
-			entry.date = NSDate().timeIntervalSince1970
-			if let image = pickedImage {
-				entry.imageData = UIImageJPEGRepresentation(image, 0.80)
-			} else {
-				entry.imageData = UIImageJPEGRepresentation(UIImage(named: "icn_noimage")!, 0.80)
-			}
-			
-			if let mood = mood {
-				entry.mood = mood
-			} else {
-				entry.mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
-			}
-			
-			if let location = location {
-				entry.location = location
-			}
-			
-			do {
-				try coreData.saveContext()
-			} catch let error as NSError {
-				print("show alert controller here \(error)")
-			}
+			let _ = DiaryEntry(context: coreData.managedObjectContext).saveEntry(withBody: entryTextView.text, mood: mood, image: pickedImage, location: location)
 		}
 		
 		dismissSelf()
@@ -238,13 +200,13 @@ class DiaryEntryViewController: UIViewController {
 	@IBAction func moodPicked(sender: UIButton) {
 		if sender.tag == 998 {
 			//user mood is bad
-			mood = DiaryEntry.DiaryEntryMood.DiaryMoodBad.rawValue
+			mood = DiaryEntry.DiaryEntryMood.Bad.rawValue
 		} else if sender.tag == 999 {
 			//user mood is average
-			mood = DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue
+			mood = DiaryEntry.DiaryEntryMood.Average.rawValue
 		} else if sender.tag == 1000 {
 			//user mood is good
-			mood = DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue
+			mood = DiaryEntry.DiaryEntryMood.Good.rawValue
 		}
 	}
 }
@@ -289,11 +251,6 @@ extension DiaryEntryViewController: CLLocationManagerDelegate {
 	}
 }
 
-extension DiaryEntryViewController:NSLayoutManagerDelegate {
-	func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-		return 10
-	}
-}
 
 extension DiaryEntryViewController:UITextViewDelegate {
 	func textViewDidChange(textView: UITextView) {
@@ -323,3 +280,7 @@ extension DiaryEntryViewController:UITextViewDelegate {
 		return newLength <= 450
 	}
 }
+
+
+
+

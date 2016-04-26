@@ -90,6 +90,14 @@ class DiaryEntryTableViewController: UITableViewController {
 		}
 	}
 	
+	override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+		
+		let v = view as! UITableViewHeaderFooterView
+		v.textLabel?.textColor = UIColor(red: 46.0/255.0, green: 80.0/255.0, blue: 120.0/255.0, alpha: 1.0)
+		v.backgroundView?.backgroundColor = UIColor(red: 185.0/255.0, green: 202.0/255.0, blue: 223.0/255.0, alpha: 1.0)
+		
+	}
+	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if let sectionInfo = fetchedResultsController.sections {
 			return sectionInfo[section].name

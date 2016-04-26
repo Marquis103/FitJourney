@@ -34,11 +34,13 @@ class DiaryEntryTableViewCell: UITableViewCell {
 		entryBodyLabel.text = entry.body
 		entryLocationLabel.text = entry.location
 		
-		let formatter:NSDateFormatter = NSDateFormatter()
+		let date = NSDate(timeIntervalSince1970: entry.date)
+		entryHeaderLabel.text = DiaryEntryDateFormatter.sharedDateFormatter.entryFormatter.stringFromDate(date)
+		/*let formatter:NSDateFormatter = NSDateFormatter()
 		formatter.dateFormat = "EEEE, MMMM d yyyy"
 		
-		let date = NSDate(timeIntervalSince1970: entry.date)
-		entryHeaderLabel.text = formatter.stringFromDate(date)
+		
+		entryHeaderLabel.text = formatter.stringFromDate(date)*/
 		
 		if let imageData = entry.imageData {
 			entryImage.image = UIImage(data: imageData)
@@ -52,16 +54,14 @@ class DiaryEntryTableViewCell: UITableViewCell {
 			entryLocationLabel.text = "No Location"
 		}
 		
-		if entry.mood == DiaryEntry.DiaryEntryMood.DiaryMoodGood.rawValue {
+		if entry.mood == DiaryEntry.DiaryEntryMood.Good.rawValue {
 			entryMoodImage.image = UIImage(named: "icn_happy")
-		} else if entry.mood == DiaryEntry.DiaryEntryMood.DiaryMoodAverage.rawValue {
+		} else if entry.mood == DiaryEntry.DiaryEntryMood.Average.rawValue {
 			entryMoodImage.image = UIImage(named: "icn_average")
-		} else if entry.mood == DiaryEntry.DiaryEntryMood.DiaryMoodBad.rawValue {
+		} else if entry.mood == DiaryEntry.DiaryEntryMood.Bad.rawValue {
 			entryMoodImage.image = UIImage(named: "icn_bad")
 		}
 		
 		entryImage.layer.cornerRadius = CGRectGetWidth(entryImage.frame) / 2.0
 	}
-	
-	
 }
