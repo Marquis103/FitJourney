@@ -17,13 +17,14 @@ class DiaryEntryTableViewControllerDataSource: NSObject, UITableViewDataSource {
 		self.tableView = tableView
 		self.tableView.dataSource = self
 		self.tableView.delegate = self
-		performFetch()
+		//performFetch()
 	}
 	
 	func performFetch() {
 		do {
 			try fetchedResultsController.performFetch()
 		} catch let error as NSError {
+			tableView = nil
 			print("Error during fetch\n \(error)")
 		}
 	}

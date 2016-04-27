@@ -15,8 +15,8 @@ class DiaryEntryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		
 		diaryEntryDataSource = DiaryEntryTableViewControllerDataSource(withTableView: tableView)
+		diaryEntryDataSource.performFetch()
     }
 
     override func didReceiveMemoryWarning() {

@@ -40,7 +40,7 @@ class DiaryEntry: NSManagedObject {
 		
 	}
 	
-	func saveEntry(withBody text:String, mood:Int16, image: UIImage?, location:String?) {
+	func saveEntry(withBody text:String, mood:Int16, image: UIImage?, location:String?) throws {
 		self.body = text
 		self.mood = mood
 		
@@ -60,7 +60,8 @@ class DiaryEntry: NSManagedObject {
 		do {
 			try self.managedObjectContext?.save()
 		} catch let error as NSError {
-			print("show alert controller here \(error)")
+			throw error
+			//print("show alert controller here \(error)")
 		}
 	}
 }

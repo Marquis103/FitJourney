@@ -186,9 +186,23 @@ class DiaryEntryViewController: UIViewController {
 		}
 		
 		if entry != nil {
-			entry?.saveEntry(withBody: entryTextView.text, mood: mood, image: imageButton.currentImage, location: nil)
+			do {
+				try entry?.saveEntry(withBody: entryTextView.text, mood: mood, image: imageButton.currentImage, location: nil)
+			} catch let error as NSError {
+				print(error)
+				let alert = DiaryEntryAlert(title: "Save Error", message: "There was an error saving journal entry!  Please try again later.", preferredStyle: .Alert)
+				
+				presentViewController(alert, animated: true, completion: nil)
+			}
 		} else {
-			let _ = DiaryEntry(context: coreData.managedObjectContext).saveEntry(withBody: entryTextView.text, mood: mood, image: pickedImage, location: location)
+			do {
+				let _ = try		DiaryEntry(context: coreData.managedObjectContext).saveEntry(withBody: entryTextView.text, mood: mood, image: pickedImage, location: location)
+			} catch let error as NSError {
+				print(error)
+				let alert = DiaryEntryAlert(title: "Save Error", message: "There was an error saving journal entry!  Please try again later.", preferredStyle: .Alert)
+				
+				presentViewController(alert, animated: true, completion: nil)
+			}
 		}
 		
 		dismissSelf()
@@ -237,7 +251,10 @@ extension DiaryEntryViewController: CLLocationManagerDelegate {
 			
 			geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
 				guard error == nil else {
-					print("there was an error getting the placemark")
+					let alert = DiaryEntryAlert(title: "Location Error", message: "There was an error calculating location!", preferredStyle: .Alert)
+					
+					self.presentViewController(alert, animated: true, completion: nil)
+					
 					return
 				}
 				let placemark = placemarks?.first

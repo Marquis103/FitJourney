@@ -151,12 +151,12 @@
                                 <rect key="frame" x="80" y="354" width="30" height="30"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/450" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-5B-X3F">
-                                <rect key="frame" x="517.5" y="371.5" width="24.5" height="14.5"/>
+                                <rect key="frame" x="517.5" y="369.5" width="24.5" height="14.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM2-9i-Xqp">
-                                <rect key="frame" x="510.5" y="371.5" width="7" height="14.5"/>
+                                <rect key="frame" x="511" y="369" width="7" height="14.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.3133833893852474" green="0.5518429487179487" blue="0.058656983393500978" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -171,7 +171,7 @@
                             <constraint firstItem="Rbo-Gr-SFS" firstAttribute="bottom" secondItem="gvi-mb-lel" secondAttribute="bottom" id="9rJ-zc-t52"/>
                             <constraint firstItem="gvi-mb-lel" firstAttribute="leading" secondItem="Gmt-g1-sQW" secondAttribute="trailing" constant="8" symbolic="YES" id="A7I-tb-2qN"/>
                             <constraint firstItem="DM2-9i-Xqp" firstAttribute="top" secondItem="Rbo-Gr-SFS" secondAttribute="top" constant="-7" id="Eis-T9-k64"/>
-                            <constraint firstItem="aAU-5B-X3F" firstAttribute="baseline" secondItem="Rbo-Gr-SFS" secondAttribute="baseline" constant="1.5" id="NOk-oP-hy8"/>
+                            <constraint firstItem="aAU-5B-X3F" firstAttribute="baseline" secondItem="Rbo-Gr-SFS" secondAttribute="baseline" constant="-4" id="NOk-oP-hy8"/>
                             <constraint firstItem="DM2-9i-Xqp" firstAttribute="baseline" secondItem="Rbo-Gr-SFS" secondAttribute="baseline" constant="3.5" id="QbB-ex-YFg"/>
                             <constraint firstItem="wPW-eR-J3D" firstAttribute="centerX" secondItem="BM1-wB-B6e" secondAttribute="centerX" id="Qh8-Qz-H1g"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aAU-5B-X3F" secondAttribute="trailing" constant="38" id="Umg-R5-MAi"/>
@@ -181,9 +181,11 @@
                             <constraint firstItem="wPW-eR-J3D" firstAttribute="leading" secondItem="Gmt-g1-sQW" secondAttribute="trailing" constant="8" symbolic="YES" id="fEt-Zv-Xea"/>
                             <constraint firstItem="Gmt-g1-sQW" firstAttribute="top" secondItem="i0P-uE-1Vt" secondAttribute="bottom" constant="8" symbolic="YES" id="fUk-QA-Fdk"/>
                             <constraint firstItem="gvi-mb-lel" firstAttribute="top" secondItem="wPW-eR-J3D" secondAttribute="bottom" constant="20" id="gJ3-TS-WJB"/>
+                            <constraint firstItem="DM2-9i-Xqp" firstAttribute="bottom" secondItem="Rbo-Gr-SFS" secondAttribute="bottom" id="hDR-XD-DFC"/>
                             <constraint firstItem="v9N-yx-zyR" firstAttribute="centerX" secondItem="BM1-wB-B6e" secondAttribute="centerX" id="kNX-la-KpP"/>
                             <constraint firstItem="Rbo-Gr-SFS" firstAttribute="baseline" secondItem="gvi-mb-lel" secondAttribute="baseline" constant="-12" id="lHV-jo-KmZ"/>
                             <constraint firstItem="Gmt-g1-sQW" firstAttribute="leading" secondItem="BM1-wB-B6e" secondAttribute="leading" constant="8" id="o9o-SG-Gdl"/>
+                            <constraint firstItem="aAU-5B-X3F" firstAttribute="bottom" secondItem="DM2-9i-Xqp" secondAttribute="bottom" id="u3R-gX-T2r"/>
                             <constraint firstItem="aAU-5B-X3F" firstAttribute="leading" secondItem="DM2-9i-Xqp" secondAttribute="trailing" id="zfi-uk-A9M"/>
                         </constraints>
                         <variation key="default">
@@ -194,6 +196,8 @@
                                 <exclude reference="lHV-jo-KmZ"/>
                                 <exclude reference="Eis-T9-k64"/>
                                 <exclude reference="QbB-ex-YFg"/>
+                                <exclude reference="Zkl-a6-uHm"/>
+                                <exclude reference="NOk-oP-hy8"/>
                             </mask>
                         </variation>
                     </view>

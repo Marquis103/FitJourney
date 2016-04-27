@@ -13,5 +13,4 @@ class DiaryNavigationController: UINavigationController {
 	override func preferredStatusBarStyle() -> UIStatusBarStyle {
 		return .LightContent
 	}
-
 }
