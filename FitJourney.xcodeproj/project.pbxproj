@@ -28,6 +28,7 @@
 		F4735FAE1CCFC3F300E4AC02 /* DiaryEntryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4735FAD1CCFC3F300E4AC02 /* DiaryEntryTextView.swift */; };
 		F47770AA1CCFDE9B0009B853 /* DiaryEntryAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47770A91CCFDE9B0009B853 /* DiaryEntryAlert.swift */; };
 		F47770AC1CCFF1450009B853 /* DiaryEntryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47770AB1CCFF1450009B853 /* DiaryEntryDateFormatter.swift */; };
+		F47770B21CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47770B11CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		F4735FAD1CCFC3F300E4AC02 /* DiaryEntryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTextView.swift; sourceTree = "<group>"; };
 		F47770A91CCFDE9B0009B853 /* DiaryEntryAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryAlert.swift; sourceTree = "<group>"; };
 		F47770AB1CCFF1450009B853 /* DiaryEntryDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryDateFormatter.swift; sourceTree = "<group>"; };
+		F47770B11CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTableViewControllerDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 		F4735F9F1CCEF00300E4AC02 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F47770B31CD033A10009B853 /* DataSource */,
 				F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */,
 				F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */,
 				F4735F5E1CCA79D400E4AC02 /* DiaryNavigationController.swift */,
@@ -237,6 +240,14 @@
 				F47770A91CCFDE9B0009B853 /* DiaryEntryAlert.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F47770B31CD033A10009B853 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F47770B11CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift */,
+			);
+			name = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +362,7 @@
 				F444EE7D1CC7198500CD724D /* DiaryEntry.swift in Sources */,
 				F47770AC1CCFF1450009B853 /* DiaryEntryDateFormatter.swift in Sources */,
 				F444EE791CC70A3600CD724D /* CoreDataStack.swift in Sources */,
+				F47770B21CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift in Sources */,
 				F4735F5F1CCA79D400E4AC02 /* DiaryNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
