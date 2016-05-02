@@ -29,6 +29,7 @@
 		F47770AA1CCFDE9B0009B853 /* DiaryEntryAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47770A91CCFDE9B0009B853 /* DiaryEntryAlert.swift */; };
 		F47770AC1CCFF1450009B853 /* DiaryEntryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47770AB1CCFF1450009B853 /* DiaryEntryDateFormatter.swift */; };
 		F47770B21CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47770B11CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift */; };
+		F4FD72451CD6EFBB00A88439 /* DiaryEntryImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FD72441CD6EFBB00A88439 /* DiaryEntryImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		F47770A91CCFDE9B0009B853 /* DiaryEntryAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryAlert.swift; sourceTree = "<group>"; };
 		F47770AB1CCFF1450009B853 /* DiaryEntryDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryDateFormatter.swift; sourceTree = "<group>"; };
 		F47770B11CD0339C0009B853 /* DiaryEntryTableViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTableViewControllerDataSource.swift; sourceTree = "<group>"; };
+		F4FD72441CD6EFBB00A88439 /* DiaryEntryImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				F444EE541CC5D02900CD724D /* DiaryEntryViewController.swift */,
 				F4735F5A1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift */,
 				F4735F5E1CCA79D400E4AC02 /* DiaryNavigationController.swift */,
+				F4FD72441CD6EFBB00A88439 /* DiaryEntryImageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				F4735FAE1CCFC3F300E4AC02 /* DiaryEntryTextView.swift in Sources */,
 				F4735F5B1CC88C4D00E4AC02 /* DiaryEntryListTableViewController.swift in Sources */,
 				F444EE531CC5D02900CD724D /* AppDelegate.swift in Sources */,
+				F4FD72451CD6EFBB00A88439 /* DiaryEntryImageViewController.swift in Sources */,
 				F4735F611CCA81E800E4AC02 /* DiaryEntryTableViewCell.swift in Sources */,
 				F47770AA1CCFDE9B0009B853 /* DiaryEntryAlert.swift in Sources */,
 				F444EE5B1CC5D02900CD724D /* FitJourney.xcdatamodeld in Sources */,
@@ -499,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FitJourney/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flashbolt.FitJourney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flashbolt.FitStory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -510,7 +514,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FitJourney/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flashbolt.FitJourney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flashbolt.FitStory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

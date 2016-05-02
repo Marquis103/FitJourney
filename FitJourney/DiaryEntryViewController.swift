@@ -43,6 +43,7 @@ class DiaryEntryViewController: UIViewController {
 	@IBOutlet weak var goodMood: UIButton!
 	@IBOutlet weak var entryDateLabel: UILabel!
 	@IBOutlet weak var imageButton: UIButton!
+	
 	@IBOutlet weak var entryTextView: DiaryEntryTextView! {
 		didSet {
 			entryTextView.configureTextView()
@@ -69,6 +70,16 @@ class DiaryEntryViewController: UIViewController {
 		super.viewWillAppear(animated)
 		
 		entryTextView.becomeFirstResponder()
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "viewPostImage" {
+			if let imageData = entry?.imageData {
+				let destinationVC = segue.destinationViewController as! DiaryEntryImageViewController
+				destinationVC.imageData = imageData
+			}
+			
+		}
 	}
 	
 	//MARK: Helper Functions
@@ -168,8 +179,15 @@ class DiaryEntryViewController: UIViewController {
 	}
 
 	//MARK: IBActions
+	@IBAction func segueToImageView(sender: UIButton) {
+		guard entry != nil else {
+			return
+		}
+		
+		performSegueWithIdentifier("viewPostImage", sender: nil)
+	}
 	
-	@IBAction func addImageToPost(sender: UIButton) {
+	@IBAction func editPostImage(sender: UIButton) {
 		if UIImagePickerController.isSourceTypeAvailable(.Camera) {
 			promptForSource()
 		} else {
@@ -177,6 +195,7 @@ class DiaryEntryViewController: UIViewController {
 			promptForPhotoLibrary()
 		}
 	}
+	
 	
 	@IBAction func doneAction(sender: UIBarButtonItem) {
 		guard entryTextView.text.characters.count > 0 else {
